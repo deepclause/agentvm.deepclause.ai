@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgentVM - Secure WASM Linux for AI Agents</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="#" class="logo">DeepClause / AgentVM</a>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="https://www.deepclause.ai/" target="_blank">DeepClause</a>
+                <a href="#docs">Docs</a>
+                <a href="https://github.com/deepclause/agentvm" target="_blank">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container heroSplit">
+            <div class="heroLeft reveal">
+                <h1 class="headline">Secure Sandboxes</h1>
+                <p class="subheadline">Run untrusted agent code safely in a lightweight WASM-based Alpine Linux VM.
+                    Node.js native execution with full networking.</p>
+                <div class="ctaGroup">
+                    <a href="https://github.com/deepclause/agentvm" class="buttonPrimary">Get Started</a>
+                    <a href="#how-it-works" class="buttonSecondary">How it works</a>
+                </div>
+            </div>
+            <div class="heroRight">
+                <div class="terminalWindow">
+                    <div class="terminalHeader">
+                        <span>agentvm -- worker thread</span>
+                        <span>node:wasi</span>
+                    </div>
+                    <div class="terminalBody" id="terminal-content">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="sectionTitle reveal">Key Features</h2>
+            <div class="featuresGrid">
+                <div class="featureCard reveal">
+                    <h3 class="featureTitle">True Isolation</h3>
+                    <p class="featureDesc">Not just a container. A complete Alpine Linux Virtual Machine compiled to
+                        WebAssembly. Isolate memory and execution completely.</p>
+                </div>
+                <div class="featureCard reveal" style="transition-delay: 0.1s;">
+                    <h3 class="featureTitle">Full Networking</h3>
+                    <p class="featureDesc">Includes a TCP/IP stack running inside WASM. Agents can make HTTP requests,
+                        run servers, and interact with the web safely via NAT.</p>
+                </div>
+                <div class="featureCard reveal" style="transition-delay: 0.2s;">
+                    <h3 class="featureTitle">Host Mounting</h3>
+                    <p class="featureDesc">Seamlessly mount host directories into the VM. Read/write files from the host
+                        system with controlled permissions.</p>
+                </div>
+                <div class="featureCard reveal" style="transition-delay: 0.3s;">
+                    <h3 class="featureTitle">Lightweight</h3>
+                    <p class="featureDesc">Runs in a Node.js Worker Thread. Non-blocking execution ensures your main
+                        application usage remains smooth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universal Integration Section -->
+    <section id="integration" class="section">
+        <div class="container">
+            <h2 class="sectionTitle reveal">Universal Agent Runtime</h2>
+            <div class="heroSplit">
+                <div class="reveal">
+                    <h3 class="headline" style="font-size: 2rem;">Works with Any Agent</h3>
+                    <p class="subheadline">AgentVM is the preferred execution environment for <strong>all</strong>
+                        autonomous agents. Whether you use a framework or raw CLI, we provide the secure sandbox.</p>
+                    <p style="margin-bottom: 24px;">
+                        The "Pi Agent" logic needs a safe place to run tools, execute code, and browse the web. AgentVM
+                        is that place.
+                    </p>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: var(--color-fg); display: block; margin-bottom: 5px;">Framework
+                                Agnostic</strong>
+                            <span style="opacity: 0.8; font-size: 0.9rem;">From OpenClaw to LangGraph, drop AgentVM into
+                                your pipeline as the execution node.</span>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <strong style="color: var(--color-fg); display: block; margin-bottom: 5px;">CLI
+                                Driven</strong>
+                            <span style="opacity: 0.8; font-size: 0.9rem;">Test and run agents directly from the command
+                                line. No complex server setup required.</span>
+                        </li>
+                    </ul>
+                    <!-- Multi-Panel Agent Carousel -->
+                    <div class="agent-carousel-container reveal" style="transition-delay: 0.2s;">
+                        <div class="agent-track">
+                            <!-- Set 1 -->
+                            <a href="https://github.com/openclaw/openclaw" target="_blank" class="agent-card">
+                                <div class="agent-header">
+                                    <div class="agent-icon">🦞</div>
+                                    <div class="agent-info">
+                                        <div class="agent-name">OpenClaw</div>
+                                        <div class="agent-desc">Local-first personal assistant.</div>
+                                    </div>
+                                </div>
+                                <div class="connection-code">
+                                    <span class="connection-label">Connection Method</span>
+                                    <span class="code-line"><span class="function">openclaw</span> connect
+                                        agent:vm</span>
+                                    <span class="code-line" style="color:#999;"># Automatic detection</span>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/ag2ai/ag2" target="_blank" class="agent-card">
+                                <div class="agent-header">
+                                    <div class="agent-icon">🤖</div>
+                                    <div class="agent-info">
+                                        <div class="agent-name">AG2</div>
+                                        <div class="agent-desc">Conversational framework.</div>
+                                    </div>
+                                </div>
+                                <div class="connection-code">
+                                    <span class="connection-label">Python SDK</span>
+                                    <span class="code-line">ag2.<span class="function">register_runtime</span>(</span>
+                                    <span class="code-line"> type=<span class="string">"agentvm"</span></span>
+                                    <span class="code-line">)</span>
+                                </div>
+                            </a>
+
+                            <a href="https://langchain-ai.github.io/langgraph/" target="_blank" class="agent-card">
+                                <div class="agent-header">
+                                    <div class="agent-icon">🦜</div>
+                                    <div class="agent-info">
+                                        <div class="agent-name">LangGraph</div>
+                                        <div class="agent-desc">Stateful orchestration.</div>
+                                    </div>
+                                </div>
+                                <div class="connection-code">
+                                    <span class="connection-label">Graph Node</span>
+                                    <span class="code-line">builder.<span class="function">add_node</span>(</span>
+                                    <span class="code-line"> <span class="string">"executor"</span>,</span>
+                                    <span class="code-line"> AgentVM()</span>
+                                    <span class="code-line">)</span>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/deepclause/agentvm" target="_blank" class="agent-card">
+                                <div class="agent-header">
+                                    <div class="agent-icon">💻</div>
+                                    <div class="agent-info">
+                                        <div class="agent-name">CLI Mode</div>
+                                        <div class="agent-desc">Direct execution.</div>
+                                    </div>
+                                </div>
+                                <div class="connection-code">
+                                    <span class="connection-label">Terminal</span>
+                                    <span class="code-line">$ agentvm run ./agent.js</span>
+                                    <span class="code-line" style="color:#999;"># Sandbox active</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="nav-btn prev-btn" aria-label="Previous">←</button>
+                            <div class="carousel-dots">
+                                <!-- Dots injected via JS -->
+                            </div>
+                            <button class="nav-btn next-btn" aria-label="Next">→</button>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- How it works / Tech Specs -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <h2 class="sectionTitle reveal">How It Works</h2>
+            <div class="featuresGrid">
+                <div class="featureCard reveal">
+                    <h3 class="featureTitle">Installation</h3>
+                    <p class="featureDesc" style="margin-bottom: 1em;">Install via npm to get the core library and the
+                        WASM image.</p>
+                    <div class="connection-code">
+                        <span class="code-line"><span class="function">npm</span> install deepclause-agentvm</span>
+                    </div>
+                </div>
+
+                <div class="featureCard reveal" style="transition-delay: 0.1s;">
+                    <h3 class="featureTitle">Architecture</h3>
+                    <p class="featureDesc">
+                        <strong>Input:</strong> Node.js calls `vm.exec(cmd)`<br>
+                        <strong>Process:</strong> Worker Thread -> WASM -> Alpine Linux<br>
+                        <strong>Output:</strong> Stdout/Stderr captured via shared memory.
+                    </p>
+                </div>
+            </div>
+
+            <div class="reveal" style="margin-top: 60px;">
+                <h3 class="headline" style="font-size: 1.5rem; margin-bottom: 20px;">Code Example</h3>
+                <div class="terminalWindow" style="max-width: 100%; min-height: auto;">
+                    <div class="terminalHeader">
+                        <span>agent-logic.js</span>
+                    </div>
+                    <div class="terminalBody"
+                        style="min-height: auto; color: #d4d4d4; font-family: 'Fira Code', monospace; line-height: 1.5;">
+                        <span style="color: #c586c0;">const</span> { AgentVM } = <span
+                            style="color: #ce9178;">'deepclause-agentvm'</span>;<br>
+                        <span style="color: #c586c0;">async function</span> <span style="color: #dcdcaa;">main</span>()
+                        {<br>
+                        &nbsp;&nbsp;<span style="color: #c586c0;">const</span> vm = <span
+                            style="color: #c586c0;">new</span>
+                        <span style="color: #4ec9b0;">AgentVM</span>({<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;network: <span style="color: #569cd6;">true</span>, <span
+                            style="color: #6a9955;">// NAT enabled automatically</span><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;mounts: { <span style="color: #ce9178;">'/mnt/data'</span>: <span
+                            style="color: #ce9178;">'./data'</span> }<br>
+                        &nbsp;&nbsp;});<br>
+                        &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
+                            style="color: #dcdcaa;">start</span>();<br>
+                        &nbsp;&nbsp;<span style="color: #6a9955;">// Execute safely isolated code</span><br>
+                        &nbsp;&nbsp;<span style="color: #c586c0;">const</span> result = <span
+                            style="color: #c586c0;">await</span> vm.<span style="color: #dcdcaa;">exec</span>(<span
+                            style="color: #ce9178;">'curl https://example.com'</span>);<br>
+                        &nbsp;&nbsp;console.<span style="color: #dcdcaa;">log</span>(result.stdout);<br>
+                        &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
+                            style="color: #dcdcaa;">stop</span>();<br>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 DeepClause. Built for the Atomic Age of AI.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
