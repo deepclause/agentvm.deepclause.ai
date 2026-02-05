@@ -58,6 +58,74 @@
         </div>
     </section>
 
+    <!-- OpenClaw Skill Section -->
+    <section id="openclaw-skill" class="section">
+        <div class="container">
+            <h2 class="sectionTitle reveal">OpenClaw Skill</h2>
+            <div class="reveal">
+                <p class="subheadline" style="margin-bottom: 30px;">
+                    Ready to give your agent full Linux capabilities? Install the official AgentVM skill for OpenClaw.
+                </p>
+
+                <div style="display: flex; justify-content: center; margin-bottom: 40px;">
+                    <div class="toggle-container">
+                        <button id="btn-human" class="toggle-btn active">I am Human</button>
+                        <button id="btn-agent" class="toggle-btn">I am Agent</button>
+                    </div>
+                </div>
+
+                <!-- Human View -->
+                <div id="view-human" class="view-content active">
+                    <div class="featuresGrid">
+                        <div class="featureCard">
+                            <h3 class="featureTitle">1. Install Dependencies</h3>
+                            <p class="featureDesc">Add the package to your OpenClaw root:</p>
+                            <div class="connection-code" style="margin-top: 15px;">
+                                <span class="code-line">npm install deepclause-agentvm</span>
+                            </div>
+                        </div>
+                        <div class="featureCard">
+                            <h3 class="featureTitle">2. Install Skill</h3>
+                            <p class="featureDesc">Download skill files from GitHub:</p>
+                            <div class="connection-code" style="margin-top: 15px;">
+                                <p style="margin-bottom: 10px;"><a
+                                        href="https://github.com/deepclause/agentvm/tree/main/example/openclaw"
+                                        target="_blank" style="color: #0066cc; text-decoration: underline;">GitHub:
+                                        deepclause/agentvm</a></p>
+                                <span class="code-line"># Copy contents to:</span>
+                                <span class="code-line">~/.openclaw/workspace/skills/agentvm/</span>
+                            </div>
+                        </div>
+                        <div class="featureCard">
+                            <h3 class="featureTitle">3. Restart</h3>
+                            <p class="featureDesc">Restart your OpenClaw gateway:</p>
+                            <div class="connection-code" style="margin-top: 15px;">
+                                <span class="code-line">openclaw gateway restart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent View -->
+                <div id="view-agent" class="view-content hidden">
+                    <div class="terminalWindow" style="max-width: 100%;">
+                        <div class="terminalHeader">
+                            <span>instructions.md</span>
+                        </div>
+                        <div class="terminalBody" style="color: #d4d4d4; padding: 16px;">
+                            <p style="margin-bottom: 8px;"># Agent Instructions</p>
+                            <p style="margin-bottom: 8px;">Please visit the following URL to install the skills:</p>
+                            <p><a href="https://github.com/deepclause/agentvm/tree/main/example/openclaw"
+                                    target="_blank"
+                                    style="color: #0066cc; text-decoration: underline;">https://github.com/deepclause/agentvm/tree/main/example/openclaw</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="section">
         <div class="container">
@@ -193,64 +261,60 @@
                 </div>
     </section>
 
-    <!-- How it works / Tech Specs -->
-    <section id="how-it-works" class="section">
-        <div class="container">
-            <h2 class="sectionTitle reveal">How It Works</h2>
-            <div class="featuresGrid">
-                <div class="featureCard reveal">
-                    <h3 class="featureTitle">Installation</h3>
-                    <p class="featureDesc" style="margin-bottom: 1em;">Install via npm to get the core library and the
-                        WASM image.</p>
-                    <div class="connection-code">
-                        <span class="code-line"><span class="function">npm</span> install deepclause-agentvm</span>
-                    </div>
-                </div>
-
-                <div class="featureCard reveal" style="transition-delay: 0.1s;">
-                    <h3 class="featureTitle">Architecture</h3>
-                    <p class="featureDesc">
-                        <strong>Input:</strong> Node.js calls `vm.exec(cmd)`<br>
-                        <strong>Process:</strong> Worker Thread -> WASM -> Alpine Linux<br>
-                        <strong>Output:</strong> Stdout/Stderr captured via shared memory.
-                    </p>
-                </div>
-            </div>
-
-            <div class="reveal" style="margin-top: 60px;">
-                <h3 class="headline" style="font-size: 1.5rem; margin-bottom: 20px;">Code Example</h3>
-                <div class="terminalWindow" style="max-width: 100%; min-height: auto;">
-                    <div class="terminalHeader">
-                        <span>agent-logic.js</span>
-                    </div>
-                    <div class="terminalBody"
-                        style="min-height: auto; color: #d4d4d4; font-family: 'Fira Code', monospace; line-height: 1.5;">
-                        <span style="color: #c586c0;">const</span> { AgentVM } = <span
-                            style="color: #ce9178;">'deepclause-agentvm'</span>;<br>
-                        <span style="color: #c586c0;">async function</span> <span style="color: #dcdcaa;">main</span>()
-                        {<br>
-                        &nbsp;&nbsp;<span style="color: #c586c0;">const</span> vm = <span
-                            style="color: #c586c0;">new</span>
-                        <span style="color: #4ec9b0;">AgentVM</span>({<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;network: <span style="color: #569cd6;">true</span>, <span
-                            style="color: #6a9955;">// NAT enabled automatically</span><br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;mounts: { <span style="color: #ce9178;">'/mnt/data'</span>: <span
-                            style="color: #ce9178;">'./data'</span> }<br>
-                        &nbsp;&nbsp;});<br>
-                        &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
-                            style="color: #dcdcaa;">start</span>();<br>
-                        &nbsp;&nbsp;<span style="color: #6a9955;">// Execute safely isolated code</span><br>
-                        &nbsp;&nbsp;<span style="color: #c586c0;">const</span> result = <span
-                            style="color: #c586c0;">await</span> vm.<span style="color: #dcdcaa;">exec</span>(<span
-                            style="color: #ce9178;">'curl https://example.com'</span>);<br>
-                        &nbsp;&nbsp;console.<span style="color: #dcdcaa;">log</span>(result.stdout);<br>
-                        &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
-                            style="color: #dcdcaa;">stop</span>();<br>
-                        }
-                    </div>
-                </div>
+    <h2 class="sectionTitle reveal">How It Works</h2>
+    <div class="featuresGrid">
+        <div class="featureCard reveal">
+            <h3 class="featureTitle">Installation</h3>
+            <p class="featureDesc" style="margin-bottom: 1em;">Install via npm to get the core library and the
+                WASM image.</p>
+            <div class="connection-code">
+                <span class="code-line"><span class="function">npm</span> install deepclause-agentvm</span>
             </div>
         </div>
+
+        <div class="featureCard reveal" style="transition-delay: 0.1s;">
+            <h3 class="featureTitle">Architecture</h3>
+            <p class="featureDesc">
+                <strong>Input:</strong> Node.js calls `vm.exec(cmd)`<br>
+                <strong>Process:</strong> Worker Thread -> WASM -> Alpine Linux<br>
+                <strong>Output:</strong> Stdout/Stderr captured via shared memory.
+            </p>
+        </div>
+    </div>
+
+    <div class="reveal" style="margin-top: 60px;">
+        <h3 class="headline" style="font-size: 1.5rem; margin-bottom: 20px;">Code Example</h3>
+        <div class="terminalWindow" style="max-width: 100%; min-height: auto;">
+            <div class="terminalHeader">
+                <span>agent-logic.js</span>
+            </div>
+            <div class="terminalBody"
+                style="min-height: auto; color: #d4d4d4; font-family: 'Fira Code', monospace; line-height: 1.5;">
+                <span style="color: #c586c0;">const</span> { AgentVM } = <span
+                    style="color: #ce9178;">'deepclause-agentvm'</span>;<br>
+                <span style="color: #c586c0;">async function</span> <span style="color: #dcdcaa;">main</span>()
+                {<br>
+                &nbsp;&nbsp;<span style="color: #c586c0;">const</span> vm = <span style="color: #c586c0;">new</span>
+                <span style="color: #4ec9b0;">AgentVM</span>({<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;network: <span style="color: #569cd6;">true</span>, <span
+                    style="color: #6a9955;">// NAT enabled automatically</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;mounts: { <span style="color: #ce9178;">'/mnt/data'</span>: <span
+                    style="color: #ce9178;">'./data'</span> }<br>
+                &nbsp;&nbsp;});<br>
+                &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
+                    style="color: #dcdcaa;">start</span>();<br>
+                &nbsp;&nbsp;<span style="color: #6a9955;">// Execute safely isolated code</span><br>
+                &nbsp;&nbsp;<span style="color: #c586c0;">const</span> result = <span
+                    style="color: #c586c0;">await</span> vm.<span style="color: #dcdcaa;">exec</span>(<span
+                    style="color: #ce9178;">'curl https://example.com'</span>);<br>
+                &nbsp;&nbsp;console.<span style="color: #dcdcaa;">log</span>(result.stdout);<br>
+                &nbsp;&nbsp;<span style="color: #c586c0;">await</span> vm.<span
+                    style="color: #dcdcaa;">stop</span>();<br>
+                }
+            </div>
+        </div>
+    </div>
+    </div>
     </section>
 
     <!-- Footer -->

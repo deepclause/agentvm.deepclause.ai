@@ -128,5 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+    }
+
+    // Toggle Logic
+    const btnHuman = document.getElementById('btn-human');
+    const btnAgent = document.getElementById('btn-agent');
+    const viewHuman = document.getElementById('view-human');
+    const viewAgent = document.getElementById('view-agent');
+
+    if (btnHuman && btnAgent && viewHuman && viewAgent) {
+        btnHuman.addEventListener('click', () => {
+            btnHuman.classList.add('active');
+            btnAgent.classList.remove('active');
+            viewHuman.classList.add('active');
+            viewHuman.classList.remove('hidden');
+            viewAgent.classList.remove('active');
+            viewAgent.classList.add('hidden');
+        });
+
+        btnAgent.addEventListener('click', () => {
+            btnAgent.classList.add('active');
+            btnHuman.classList.remove('active');
+            viewAgent.classList.add('active');
+            viewAgent.classList.remove('hidden');
+            viewHuman.classList.remove('active');
+            viewHuman.classList.add('hidden');
+        });
     }
 });
